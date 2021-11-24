@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background"
-        android:text="@string/delete_contact"
+        android:text="@string/edit_contact"
         android:textAllCaps="false"
         app:backgroundTint="@color/my_local_green"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">WeekSixTaskAndroidSQ009</string>
-    <string name="phone_number">Phone number</string>
-    <string name="add_contact">Save new contact</string>
-    <string name="read_contact">Read contact</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="cloud_contact">Load cloud contact</string>
+    <string name="read_contact">Read phone contact</string>
     <string name="last_name">last name</string>
     <string name="first_name">first name</string>
     <string name="load_contact">Load saved contact</string>
-    <string name="delete_contact">Delete contact</string>
+    <string name="edit_contact">Edit contact</string>
     <string name="update_contact">Update contact</string>
-    <string name="name">Name</string>
+    <string name="name">Name:</string>
+    <string name="add_contact">Add contact</string>
 </resources>

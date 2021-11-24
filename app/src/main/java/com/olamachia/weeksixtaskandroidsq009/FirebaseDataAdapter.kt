@@ -3,15 +3,21 @@ package com.olamachia.weeksixtaskandroidsq009
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DataAdapter(var list: ArrayList<MyModel>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class FirebaseDataAdapter(var list: ArrayList<MyModel>): RecyclerView.Adapter<FirebaseDataAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        var name = itemView.findViewById<TextView>(R.id.contact_name)
-        var phone = itemView.findViewById<TextView>(R.id.contact_number)
+        var name: TextView = itemView.findViewById(R.id.contact_name)
+        var phone: TextView = itemView.findViewById(R.id.contact_number)
+        var callButton: ImageView = itemView.findViewById(R.id.call_icon)
+        val editButton: ImageView = itemView.findViewById(R.id.edit_icon)
+        val shareButton: ImageView = itemView.findViewById(R.id.share_icon)
+        val deleteButton: ImageView = itemView.findViewById(R.id.delete_icon)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,5 +31,9 @@ class DataAdapter(var list: ArrayList<MyModel>): RecyclerView.Adapter<DataAdapte
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun onDelete(){
+
     }
 }

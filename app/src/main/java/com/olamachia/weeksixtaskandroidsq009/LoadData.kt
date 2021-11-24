@@ -35,7 +35,7 @@ class LoadData : AppCompatActivity() {
                     list.add(model as MyModel)
                 }
                 if (list.size > 0){
-                    val adapter = DataAdapter(list)
+                    val adapter = FirebaseDataAdapter(list)
                     binding.recyclerviewLayout.adapter = adapter
                 }
             }
