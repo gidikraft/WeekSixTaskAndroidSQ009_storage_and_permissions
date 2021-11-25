@@ -32,8 +32,8 @@ class EditFirebaseContact : AppCompatActivity() {
 
 
         if (name.isNotEmpty() && phone.isNotEmpty()){
-//            val users = MyModel(null, name, phone)
-//            database.child(users.id!!).setValue(users)
+            val users = MyModel(null, name, phone)
+            reference.child(users.id!!).setValue(users)
 
             binding.etEditName.setText("")
             binding.etEditPhoneNumber.setText("")

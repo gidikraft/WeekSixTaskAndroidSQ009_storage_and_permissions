@@ -2,6 +2,7 @@ package com.olamachia.weeksixtaskandroidsq009
 
 import android.Manifest
 import android.content.Intent
+import android.content.Intent.createChooser
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -79,10 +80,18 @@ class LoadData : AppCompatActivity(), RecyclerViewItemListener {
     //override onShareButtonClicked that is declared in itemViewListener
     override fun onShareButtonClicked(model: MyModel) {
         Toast.makeText(this, "Share button clicked", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(Intent.ACTION_SEND)
+//        intent.type = "type/plain"
+//        intent.putExtra(Intent.EXTRA_TEXT, "${model.name} \n ${model.phone}")
+
         val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "type/plain"
-        val contactName = model.name
-        val contactPhone = model.phone
-        intent.putExtra(Intent.EXTRA_TEXT, "$contactName \n $contactPhone")
+        intent.putExtra(Intent.EXTRA_TEXT, "${model.name} \n ${model.phone}")
+        intent.type  = "text/plain"
+        startActivity(
+            createChooser(
+                intent,
+                model.name
+            )
+        )
     }
 }

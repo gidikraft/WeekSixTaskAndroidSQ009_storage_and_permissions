@@ -23,7 +23,7 @@
         android:id="@+id/load_contact_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/load_contact"
+        android:text="@string/firebase_contact"
         android:textAllCaps="false"
         android:background="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="parent"
