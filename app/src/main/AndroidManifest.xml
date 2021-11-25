@@ -3,6 +3,7 @@
     package="com.olamachia.weeksixtaskandroidsq009">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeekSixTaskAndroidSQ009">
+        <activity
+            android:name=".EditFirebaseContact"
+            android:exported="false" />
         <activity
             android:name=".LoadData"
             android:exported="false" />

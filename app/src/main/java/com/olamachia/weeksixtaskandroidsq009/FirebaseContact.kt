@@ -16,25 +16,25 @@ class FirebaseContact : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFirebaseContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //create an instance of the firebase database
         database = FirebaseDatabase.getInstance().getReference("Contacts")
-
+        //add onClickListener to add contact button
         binding.addContactBtn.setOnClickListener {
             sendData()
         }
-
+        //add onClickListener to button that loads data from the firebase
         binding.loadContactBtn.setOnClickListener {
             startActivity(Intent(applicationContext, LoadData::class.java))
         }
     }
-
+    //this method sends your firebase instance to the firebase database
     private fun sendData(){
         val name = binding.etName.text.toString().trim()
         val phone = binding.etPhoneNumber.text.toString().trim()
 
-        if (name.isNotEmpty() || phone.isNotEmpty()){
+        if (name.isNotEmpty() && phone.isNotEmpty()){
             val users = MyModel(null, name, phone)
-             users.id = database.push().key
+            users.id = database.push().key
             database.child(users.id!!).setValue(users)
 
             binding.etName.setText("")

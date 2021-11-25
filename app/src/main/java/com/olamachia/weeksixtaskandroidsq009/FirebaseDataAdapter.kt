@@ -14,10 +14,10 @@ class FirebaseDataAdapter(var list: ArrayList<MyModel>, private val recyclerView
             itemView.findViewById<TextView>(R.id.contact_name).text = model.name
             itemView.findViewById<TextView>(R.id.contact_number).text = model.phone
         }
-        val callButton: ImageView = itemView.findViewById(R.id.call_icon)
-        val deleteButton: ImageView = itemView.findViewById(R.id.delete_icon)
-        val shareButton: ImageView = itemView.findViewById(R.id.share_icon)
-        val editButton: ImageView = itemView.findViewById(R.id.edit_icon)
+        val callButton: ImageView = itemView.findViewById(R.id.call_icon)       //add a bindable view to the call icon
+        val deleteButton: ImageView = itemView.findViewById(R.id.delete_icon)   //add a bindable view to the delete icon
+        val shareButton: ImageView = itemView.findViewById(R.id.share_icon)     //add a bindable view to the share icon
+        val editButton: ImageView = itemView.findViewById(R.id.edit_icon)       //add a bindable view to the edit icon
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,10 +26,7 @@ class FirebaseDataAdapter(var list: ArrayList<MyModel>, private val recyclerView
     //function that binds view to each layout component
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
-        //set onClickListener to each recyclerview item
-        holder.itemView.setOnClickListener {
-            recyclerViewItemListener.onItemClicked(list[position])
-        }
+
         //set onClickListener on call icon on each recyclerview item
         holder.callButton.setOnClickListener {
             recyclerViewItemListener.onCallButtonClicked(list[position])

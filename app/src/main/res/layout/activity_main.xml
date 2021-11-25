@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
     <!--  button to add contacts to shared storage  -->
     <Button
-        android:id="@+id/add_contact_btn"
+        android:id="@+id/load_contact_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/load_contact"

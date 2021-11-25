@@ -13,36 +13,12 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/delete_contact_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/delete_contact_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:text="@string/edit_contact"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/my_local_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/update_contact_btn"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/update_contact_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:text="@string/update_contact"
-        android:textAllCaps="false"
-        app:backgroundTint="@color/my_local_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/delete_contact_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

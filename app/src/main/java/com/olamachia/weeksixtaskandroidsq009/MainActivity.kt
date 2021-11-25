@@ -24,17 +24,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //this button reads contact from device phonebook
         binding.readContactBtn.setOnClickListener {
             requestContactPermission()
         }
-
-        binding.addContactBtn.setOnClickListener {
+        //this is the button that opens a new activity that loads firebase database
+        binding.loadContactBtn.setOnClickListener {
             val pageIntent = Intent(this, FirebaseContact::class.java)
             startActivity(pageIntent)
         }
     }
-
+    //this method loads contact from phonebook after permission has been granted
     private fun readContact(){
         if (phoneContactList.isEmpty()){
             val contacts = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null)
@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
         contactView = binding.contactList      //initiate recyclerView in the activity_main layout
         val myContactAdapter = ContactRecyclerView(phoneContactList, this)       //initiate ContactAdapter to hold the contactList in this application context
 
-        contactView.layoutManager = LinearLayoutManager(this)       //organize in LinearLayout
+        contactView.layoutManager = LinearLayoutManager(this)       //organize recyclerview in LinearLayout
         contactView.adapter = myContactAdapter
     }
-
+    //this button listens for when permission is granted on devices from Android OS M
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    //method that request permission if permission is not granted
     private fun requestContactPermission(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) ==PackageManager.PERMISSION_GRANTED){
             readContact()
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             requestPermissionsCompat(arrayOf(Manifest.permission.READ_CONTACTS), PERMISSION_READ_CONTACT)
         }
     }
-
+    //
     private fun requestPermissionsCompat(permissionsArray: Array<String>, requestCode: Int){
         ActivityCompat.requestPermissions(this, permissionsArray, requestCode)
     }

@@ -1,9 +1,15 @@
 package com.olamachia.weeksixtaskandroidsq009
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import com.olamachia.weeksixtaskandroidsq009.databinding.ActivityLoadDataBinding
 
@@ -11,6 +17,7 @@ class LoadData : AppCompatActivity(), RecyclerViewItemListener {
     private lateinit var binding: ActivityLoadDataBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
+    val PERMISSION_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,10 +27,6 @@ class LoadData : AppCompatActivity(), RecyclerViewItemListener {
         database = FirebaseDatabase.getInstance()               //create an instance of the database
         reference = database.getReference("Contacts")      //set variable to refer to the instance of the database created
         loadData()
-        //add onClickListener to update button
-        binding.updateContactBtn.setOnClickListener {
-//            updateContact()
-        }
 
     }
     //this function loads data from the firebase database into the recyclerview adapter that display the data
@@ -48,24 +51,38 @@ class LoadData : AppCompatActivity(), RecyclerViewItemListener {
         })
     }
 
-    override fun onItemClicked(model: MyModel) {
-        Toast.makeText(this, model.toString(), Toast.LENGTH_LONG).show()
-    }
-
+    //override onCallButtonClicked that is declared in itemViewListener
     override fun onCallButtonClicked(model: MyModel) {
+        if(ContextCompat.checkSelfPermission(this@LoadData, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this@LoadData, arrayOf(Manifest.permission.CALL_PHONE),PERMISSION_CODE)
+        } else {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${model.phone}")
+            startActivity(intent)
+//            startActivity(intent, null)
+        }
         Toast.makeText(this, "${model.phone}", Toast.LENGTH_SHORT).show()
     }
-
+    //override onEditButtonClicked that is declared in itemViewListener
     override fun onEditButtonClicked(model: MyModel) {
-        TODO("Not yet implemented")
+        val pageIntent = Intent(this, EditFirebaseContact::class.java)
+        startActivity(pageIntent)
     }
-
+    //override onDeleteButtonClicked that is declared in itemViewListener
     override fun onDeleteButtonClicked(model: MyModel) {
-        TODO("Not yet implemented")
+        reference.child(model.id!!).removeValue().addOnSuccessListener {
+            Toast.makeText(this, "Contact deleted successfully", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Contact delete unsuccessful", Toast.LENGTH_SHORT).show()
+        }
     }
-
+    //override onShareButtonClicked that is declared in itemViewListener
     override fun onShareButtonClicked(model: MyModel) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, "Share button clicked", Toast.LENGTH_SHORT).show()
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "type/plain"
+        val contactName = model.name
+        val contactPhone = model.phone
+        intent.putExtra(Intent.EXTRA_TEXT, "$contactName \n $contactPhone")
     }
-
 }
